@@ -38,14 +38,13 @@ log "Configuring restart script"
 template "teamspeak" do
 	path '/etc/init.d/teamspeak'
 	source 'teamspeak.erb'
-	owner 'root'
+	owner 'teamspeak'
 	mode  '0700'
 end
 
-poise_service_user 'teamspeak'
-
 poise_service 'teamspeak' do
 	command '/etc/init.d/teamspeak'
+	user 'teamspeak'
 	action :enable
 end
 
