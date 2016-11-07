@@ -73,7 +73,9 @@ exit 0'
 end
 
 service 'teamspeak' do
-	action [:enable, :start]
+	init_command '/etc/init.d/teamspeak'
+	action [:enable,:start]
 end
+
 
 log "Script is done. Success."
