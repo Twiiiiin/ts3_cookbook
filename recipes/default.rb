@@ -32,7 +32,7 @@ end
 log "Unpacking teamspeak"
 
 tarball_x '/home/teamspeak/teamspeak3-server_linux-amd64-3.0.11.1.tar' do
-	destination '/home/teamspeak/teamspeak3-server_linux-amd64'
+	destination '/home/teamspeak'
 	owner 'teamspeak'
 	action :extract
 end
