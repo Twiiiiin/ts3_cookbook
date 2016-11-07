@@ -17,12 +17,22 @@ user 'teamspeak' do
 end
 
 log "Downloading teamspeak"
-
-execute "wget http://dl.4players.de/ts/releases/3.0.11.1/teamspeak3-server_linux-amd64-3.0.11.1.tar.gz"
+remote_file '/home/teamspeak/teamspeak3-server_linux-amd64-3.0.11.1.tar' do
+	source 'http://dl.4players.de/ts/releases/3.0.11.1/teamspeak3-server_linux-amd64-3.0.11.1.tar.gz'
+	owner 'teamspeak'
+	action :create
+end
 
 log "Unpacking teamspeak"
 
-execute "tar -xzvf *.tar.gz && rm *.tar.gz"
+tarball_x '/home/teamspeak/teamspeak3-server_linux-amd64-3.0.11.1.tar' do
+	destination '/home/teamspeak/teamspeak3-server_linux-amd64'
+	owner 'teamspeak'
+	action :extract
+end
+
+
+#execute "tar -xzvf *.tar.gz && rm *.tar.gz"
 
 log "Configuring restart script"
 

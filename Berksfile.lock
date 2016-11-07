@@ -1,0 +1,12 @@
+DEPENDENCIES
+  tarball
+    git: https://github.com/ooyala/tarball-chef-cookbook.git
+    revision: f83bed678bbde4997958d5de1093c65105a13118
+  ts3_test
+    path: .
+    metadata: true
+
+GRAPH
+  tarball (0.0.1)
+  ts3_test (0.1.0)
+    tarball (>= 0.0.0)
