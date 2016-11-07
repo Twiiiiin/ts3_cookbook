@@ -34,7 +34,6 @@ end
 
 log "Configuring restart script"
 
-
 template "teamspeak" do
 	path '/etc/init.d/teamspeak'
 	source 'teamspeak.erb'
@@ -46,8 +45,12 @@ poise_service 'teamspeak' do
 	provider :sysvinit
 	command '/etc/init.d/teamspeak'
 	user 'teamspeak'
-	action :enable
+	action :start
 end
+
+
+
+
 
 
 log "Script is done. Success."
