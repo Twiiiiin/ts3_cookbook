@@ -43,6 +43,7 @@ template "teamspeak" do
 end
 
 poise_service 'teamspeak' do
+	provider :sysvinit
 	command '/etc/init.d/teamspeak'
 	user 'teamspeak'
 	action :enable
