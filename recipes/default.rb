@@ -34,10 +34,6 @@ end
 
 log "Configuring restart script"
 
-service 'teamspeak' do
-	supports :reload => true, :start => true, :stop => true, :restart => true
-	action :nothing
-end
 
 template "teamspeak" do
 	path '/etc/init.d/teamspeak'
@@ -46,15 +42,12 @@ template "teamspeak" do
 	mode  '0700'
 end
 
-service 'teamspeak' do
-	supports :reload => true, :start => true, :stop => true, :restart => true
-	action :nothing
-end
+poise_service_user 'teamspeak'
 
-execute "update-rc.d teamspeak defaults" do
-	notifies :start, 'service[teamspeak]'
+poise_service 'teamspeak' do
+	command '/etc/init.d/teamspeak'
+	action :enable
 end
-
 
 
 log "Script is done. Success."
