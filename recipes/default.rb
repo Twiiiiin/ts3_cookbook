@@ -12,6 +12,7 @@ log "Adding User teamspeak"
 user 'teamspeak' do
 	comment 'teamspeak user'
 	home '/home/teamspeak'
+	manage_home true
 	shell '/bin/bash'
 	password 'bacinellavolante'
 end
