@@ -68,7 +68,7 @@ exit 1
 esac
 exit 0'
 	mode '0700'
-	owner 'teamspeak'
+	owner 'root'
 end
 
 service 'teamspeak' do

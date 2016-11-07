@@ -1,1 +1,1 @@
-default['ts3_test']['/home/teamspeak']
+default['ts3_test']['dir'] = '/home/teamspeak'
