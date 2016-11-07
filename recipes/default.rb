@@ -35,11 +35,22 @@ end
 log "Configuring restart script"
 
 service 'teamspeak' do
-	supports :reload => true
-	init_command '/etc/init.d/teamspeak'
-	subscribes :reload, 'template[teamspeak]', :immediately
-	action [:enable,:start]
+	supports :reload => true, :start => true, :stop => true, :restart => true
+	action :nothing
 end
 
+template "teamspeak" do
+	path '/etc/init.d/teamspeak'
+	source 'teamspeak.erb'
+	owner 'root'
+	mode  '0700'
+end
+
+execute "update-rc.d teamspeak defaults"
+
+service 'teamspeak' do
+	supports :reload => true, :start => true, :stop => true, :restart => true
+	action :start
+end
 
 log "Script is done. Success."
