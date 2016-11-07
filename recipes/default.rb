@@ -7,12 +7,6 @@
 # This cookbook will install and configure a Teamspeak 3 server on the machine, with dependencies and configurations. 
 # Made for Debian. Tested on debian.
 
-log "Creating Folders"
-
-directory '/home/teamspeak' do
-	action :create
-end
-
 log "Adding User teamspeak"
 
 user 'teamspeak' do
@@ -78,8 +72,7 @@ exit 0'
 end
 
 service 'teamspeak' do
-	action :enable
-	action :start
+	action [:enable, :start]
 end
 
 log "Script is done. Success."
