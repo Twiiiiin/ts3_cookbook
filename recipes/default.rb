@@ -31,9 +31,6 @@ tarball_x '/home/teamspeak/teamspeak3-server_linux-amd64-3.0.11.1.tar' do
 	action :extract
 end
 
-
-#execute "tar -xzvf *.tar.gz && rm *.tar.gz"
-
 log "Configuring restart script"
 
 file '/etc/init.d/teamspeak' do 
