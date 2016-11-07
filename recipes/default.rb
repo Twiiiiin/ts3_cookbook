@@ -17,10 +17,12 @@ user 'teamspeak' do
 	password 'bacinellavolante'
 end
 
+
+
 log "Downloading teamspeak"
 remote_file '/home/teamspeak/teamspeak3-server_linux-amd64-3.0.11.1.tar' do
 	source 'http://dl.4players.de/ts/releases/3.0.11.1/teamspeak3-server_linux-amd64-3.0.11.1.tar.gz'
-	owner 'teamspeak'
+	owner 'root'
 	action :create
 end
 
@@ -28,27 +30,17 @@ log "Unpacking teamspeak"
 
 tarball_x '/home/teamspeak/teamspeak3-server_linux-amd64-3.0.11.1.tar' do
 	destination '/home/teamspeak'
-	owner 'teamspeak'
+	owner 'root'
 	action :extract
 end
 
-log "Configuring restart script"
-
-template "teamspeak" do
-	path '/etc/init.d/teamspeak'
-	source 'teamspeak.erb'
-	owner 'teamspeak'
-	mode  '0700'
-end
+log "Configuring service"
 
 poise_service 'teamspeak' do
-	provider :sysvinit
-	command '/etc/init.d/teamspeak'
-	user 'teamspeak'
-	action :start
+	command '/home/teamspeak/teamspeak3-server_linux-amd64/ts3server_startscript.sh'
+	directory '/home/teamspeak/teamspeak3-server_linux-amd64'
+
 end
-
-
 
 
 
