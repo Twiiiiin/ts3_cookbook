@@ -73,8 +73,9 @@ exit 0'
 end
 
 service 'teamspeak' do
+	supports :reload => true
 	init_command '/etc/init.d/teamspeak'
-	action [:enable,:start]
+	action [:reload,:enable,:start]
 end
 
 
