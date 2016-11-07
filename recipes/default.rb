@@ -46,11 +46,15 @@ template "teamspeak" do
 	mode  '0700'
 end
 
-execute "update-rc.d teamspeak defaults"
-
 service 'teamspeak' do
 	supports :reload => true, :start => true, :stop => true, :restart => true
-	action :start
+	action :nothing
 end
+
+execute "update-rc.d teamspeak defaults" do
+	notifies :start, 'service[teamspeak]'
+end
+
+
 
 log "Script is done. Success."
