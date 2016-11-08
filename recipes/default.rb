@@ -41,12 +41,18 @@ end
 
 log "Configuring service"
 
-
-execute 'update-rc.d teamspeak defaults'
-
 service 'teamspeak' do
-	action :start
+	action :nothing
+end
+
+if node[:platform_family].include?("rhel") then
+	execute 'chkconfig --add teamspeak'
+else
+	execute 'update-rc.d teamspeak defaults'
 end
 
 
-log "Script is done. Success."
+
+log "Script is done. Success." do
+	notifies :start, 'service[teamspeak]'
+end
