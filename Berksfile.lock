@@ -1,17 +1,12 @@
 DEPENDENCIES
-  poise-service
   tarball
     git: https://github.com/ooyala/tarball-chef-cookbook.git
     revision: f83bed678bbde4997958d5de1093c65105a13118
-  ts3_test
+  ts3_cookbook
     path: .
     metadata: true
 
 GRAPH
-  poise (2.7.1)
-  poise-service (1.4.2)
-    poise (~> 2.0)
   tarball (0.0.1)
-  ts3_test (0.1.0)
-    poise-service (>= 0.0.0)
+  ts3_cookbook (1.0.0)
     tarball (>= 0.0.0)
