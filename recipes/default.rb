@@ -1,11 +1,11 @@
 #
-# Cookbook Name:: ts3_test
+# Cookbook Name:: ts3_cookbook
 # Recipe:: default
 #
 # Copyright (c) 2016 Twin, All Rights Reserved.
 
 # This cookbook will install and configure a Teamspeak 3 server on the machine, with dependencies and configurations. 
-# Made for Debian. Tested on debian.
+# Made for Debian. Tested on debian. Actually works only on debian
 
 log "Adding User teamspeak"
 
@@ -48,13 +48,5 @@ service 'teamspeak' do
 	action :start
 end
 
-=begin
-poise_service 'teamspeak' do
-	provider :sysvinit
-	command '/home/teamspeak/teamspeak3-server_linux-amd64/ts3_minimal_runscript.sh'
-	directory '/home/teamspeak/teamspeak3-server_linux-amd64'
-
-end
-=end
 
 log "Script is done. Success."

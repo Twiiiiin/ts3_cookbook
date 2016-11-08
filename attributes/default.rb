@@ -1,1 +1,1 @@
-default['ts3_test']['dir'] = '/home/teamspeak'
+default['ts3_cookbook']['dir'] = '/home/teamspeak'
