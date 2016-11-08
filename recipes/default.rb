@@ -4,10 +4,11 @@
 #
 # Copyright (c) 2016 Twin, All Rights Reserved.
 
-# This cookbook will install and configure a Teamspeak 3 server on the machine, with dependencies and configurations. 
-# Made for Debian. Tested on debian. Actually works only on debian
+# This cookbook will install and configure a Teamspeak 3 server on the machine, 
+# with dependencies and configurations. 
+# Made for Debian. Tested on debian. Actually works only on debian.
 
-log "Adding User teamspeak"
+log 'Adding User teamspeak'
 
 user 'teamspeak' do
 	comment 'teamspeak user'
@@ -19,7 +20,7 @@ end
 
 
 
-log "Downloading teamspeak"
+log 'Downloading teamspeak'
 remote_file '/home/teamspeak/teamspeak3-server_linux-amd64-3.0.11.1.tar' do
 	source 'http://dl.4players.de/ts/releases/3.0.11.1/teamspeak3-server_linux-amd64-3.0.11.1.tar.gz'
 	owner 'root'
@@ -31,7 +32,7 @@ template '/etc/init.d/teamspeak' do
 	mode '0700'
 end
 
-log "Unpacking teamspeak"
+log 'Unpacking teamspeak'
 
 tarball_x '/home/teamspeak/teamspeak3-server_linux-amd64-3.0.11.1.tar' do
 	destination '/home/teamspeak'
@@ -39,13 +40,13 @@ tarball_x '/home/teamspeak/teamspeak3-server_linux-amd64-3.0.11.1.tar' do
 	action :extract
 end
 
-log "Configuring service"
+log 'Configuring service'
 
 service 'teamspeak' do
 	action :nothing
 end
 
-if node[:platform_family].include?("rhel") then
+if node[:platform_family].include?('rhel')
 	execute 'chkconfig --add teamspeak'
 else
 	execute 'update-rc.d teamspeak defaults'
@@ -53,6 +54,6 @@ end
 
 
 
-log "Script is done. Success." do
+log 'Script is done. Success.' do
 	notifies :start, 'service[teamspeak]'
 end
