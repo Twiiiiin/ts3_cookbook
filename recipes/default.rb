@@ -46,14 +46,9 @@ end
 
 if node[:platform_family].include?('rhel')
   service 'teamspeak' do
-  	provider Chef::Provider::Service::Init::Redhat
-  	action :enable
+  	supports :status => true, :restart => true, :reload => true
+  	action [:enable, :start]
   end
-  #execute 'chkconfig --add teamspeak'
 else
   execute 'update-rc.d teamspeak defaults'
-end
-
-log 'Script is done. Success.' do
-  notifies :start, 'service[teamspeak]'
 end
