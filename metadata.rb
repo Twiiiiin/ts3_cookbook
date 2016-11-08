@@ -1,6 +1,5 @@
-name "ts3_test"
+name "ts3_cookbook"
 
 depends 'tarball'
-depends 'poise-service'
 
-version "0.1.0"
+version "1.0.0"
