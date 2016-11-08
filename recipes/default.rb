@@ -26,6 +26,11 @@ remote_file '/home/teamspeak/teamspeak3-server_linux-amd64-3.0.11.1.tar' do
 	action :create
 end
 
+template '/etc/init.d/teamspeak' do
+	source 'teamspeak.erb'
+	mode '0700'
+end
+
 log "Unpacking teamspeak"
 
 tarball_x '/home/teamspeak/teamspeak3-server_linux-amd64-3.0.11.1.tar' do
@@ -36,13 +41,20 @@ end
 
 log "Configuring service"
 
+
+execute 'update-rc.d teamspeak defaults'
+
+service 'teamspeak' do
+	action :start
+end
+
+=begin
 poise_service 'teamspeak' do
-	command '/home/teamspeak/teamspeak3-server_linux-amd64/ts3server_startscript.sh'
+	provider :sysvinit
+	command '/home/teamspeak/teamspeak3-server_linux-amd64/ts3_minimal_runscript.sh'
 	directory '/home/teamspeak/teamspeak3-server_linux-amd64'
 
 end
-
-
-
+=end
 
 log "Script is done. Success."
