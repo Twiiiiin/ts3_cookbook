@@ -1,1 +1,3 @@
 /test/*
+.kitchen/
+.kitchen.local.yml
